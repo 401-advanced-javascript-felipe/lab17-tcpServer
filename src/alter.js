@@ -21,7 +21,7 @@ const readFile = util.promisify(fs.readFile);
 function toUpper(data) {
   data = Buffer.from(data);
   return data.toString().toUpperCase();
-};
+}
 
 
 exports.writeFile = writeFile;

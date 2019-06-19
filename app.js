@@ -1,6 +1,6 @@
 'use strict';
 
-const alter = require('./src/alter')
+const alter = require('./src/alter');
 
 const net = require('net');
 const client = new net.Socket();
@@ -15,10 +15,9 @@ const alterFile = (file) => {
     })
     .then(client.write(payload('saved')))
     .catch(error =>{
-      client.write(payload('not saved'));
+      client.write(payload('error'));
     });
 };
-
 
 function payload(event) {
   let payload = {
@@ -30,7 +29,6 @@ function payload(event) {
 
 let file = process.argv.slice(2).shift();
 alterFile(file);
-
 
 client.on('close', () => {
   console.log('Connections closed with app.js');
