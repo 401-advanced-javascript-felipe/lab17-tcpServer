@@ -13,7 +13,7 @@ Reads/Writes/Uppercases a file. It also connects to the running server using TCP
 #### `server.js`
 Parse the text it receives. Given a good “event” broadcast the event to all connected clients.
 
-### `logger.js`
+#### `logger.js`
 Connects to the server.js. Listen for “error” and “save” events only. On “save”, do a console.log() with the message. On “error” do a console.error() with the message
 
 ### Setup
