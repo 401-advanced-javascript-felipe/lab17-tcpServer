@@ -1,6 +1,6 @@
 'use strict';
 
-const alter = require('./src/alter');
+const alter = require('./src/utils');
 
 const net = require('net');
 const client = new net.Socket();
