@@ -20,8 +20,10 @@ server.on('connection', (socket) => {
 
 let dispatchEvent = (buffer) => {
   let text = buffer.toString().trim();
+  console.log(text);
+  text = JSON.parse(text);
   for (let socket in socketPool) {
-    socketPool[socket].write(`${event} ${text}`);
+    socketPool[socket].write(JSON.stringify(text));
   }
 };
 

@@ -1,47 +1,36 @@
-# LAB - 
+# LAB 18 TCP Server
 
-## Project Name
-
-### Author: Student/Group Name
+### Author: Felipe
 
 ### Links and Resources
-* [submission PR](http://xyz.com)
-* [travis](http://xyz.com)
-* [back-end](http://xyz.com) (when applicable)
-* [front-end](http://xyz.com) (when applicable)
-
-#### Documentation
-* [api docs](http://xyz.com) (API servers)
-* [jsdoc](http://xyz.com) (Server assignments)
-* [styleguide](http://xyz.com) (React assignments)
+* [submission PR](https://github.com/401-advanced-javascript-felipe/lab17-tcpServer/pull/1)
+* [travis](https://travis-ci.com/401-advanced-javascript-felipe/lab17-tcpServer/builds/116062544)
 
 ### Modules
-#### `modulename.js`
-##### Exported Values and Methods
+#### `app.js`
+Reads/Writes/Uppercases a file. It also connects to the running server using TCP. On file errors, write an error message to the socket. On file save, write a save message to the socket.
 
-###### `foo(thing) -> string`
-Usage Notes or examples
+#### `server.js`
+Parse the text it receives. Given a good “event” broadcast the event to all connected clients.
 
-###### `bar(array) -> array`
-Usage Notes or examples
+#### `logger.js`
+Connects to the server.js. Listen for “error” and “save” events only. On “save”, do a console.log() with the message. On “error” do a console.error() with the message
 
 ### Setup
 #### `.env` requirements
-* `PORT` - Port Number
-* `MONGODB_URI` - URL to the running mongo instance/db
+* `PORT` - 3001 is the default port
 
 #### Running the app
-* `npm start`
-* Endpoint: `/foo/bar/`
-  * Returns a JSON object with abc in it.
-* Endpoint: `/bing/zing/`
-  * Returns a JSON object with xyz in it.
+Open 3 terminal windows
+
+1. `npm run startServer` - This will kick off the main server. It will listen and then emit. It is listening to `data` events.
+2. `npm run startLogger` - This will run the logger server. This server will listen for `saved` event. Once it hears the event it will console.log the message. Anything else it wil console.log error
+3. `npm start` - it will read and turn to uppercase the contents in `./files/test.txt`. Upon success it will then emit success to `server.js`.
+4. (Optional) `npm run startError` - Same as `npm start` but will emit the `file-error` message
   
 #### Tests
-* How do you run tests?
-* What assertions were made?
-* What assertions need to be / should be made?
+`npm test` - Will test for functions that I have written. and will mock the fs module.
+
 
 #### UML
-![](./assets/----.jpg)
-# lab17-tcpServer
+![](./assets/tcpServer.jpg)
